@@ -1,24 +1,93 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* app/globals.css */
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), system-ui, sans-serif;
+}
 
 @layer base {
+  * {
+    @apply border-gray-200;
+  }
+  
+  .dark * {
+    @apply border-gray-800;
+  }
+  
   body {
-    @apply text-gray-900 bg-gray-50;
+    @apply bg-white text-gray-900;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  .dark body {
+    @apply bg-gray-950 text-gray-50;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
   }
 }
 
 @layer components {
-  .print-only {
-    display: none;
+  .gradient-text {
+    @apply bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .dark .gradient-text {
+    @apply from-indigo-400 via-purple-400 to-blue-400;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600;
+  }
+  
+  .dark .gradient-bg {
+    @apply from-indigo-500 via-purple-500 to-blue-500;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+  
+  .section-padding {
+    @apply py-12 md:py-20 lg:py-28;
   }
 }
 
-@media print {
-  .no-print {
-    display: none !important;
+@layer utilities {
+  .bg-grid-slate-100 {
+    background-image: 
+      linear-gradient(rgba(241, 245, 249, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(241, 245, 249, 0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
-  .print-only {
-    display: block !important;
+  
+  .dark .bg-grid-slate-800 {
+    background-image: 
+      linear-gradient(rgba(30, 41, 59, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
 }

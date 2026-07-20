@@ -1,8 +1,4 @@
-// types/index.ts
-export interface SEOAnalysisRequest {
-  url: string;
-}
-
+// app/types/index.ts
 export interface ScoreBreakdown {
   meta_tags: number;
   headings: number;
@@ -133,28 +129,4 @@ export interface SEOReport {
   analyzed_at: string;
   readability_score?: number;
   mobile_friendly?: boolean;
-  monthly_usage?: {
-    monthly_used: number;
-    monthly_limit: number;
-    monthly_remaining: number;
-    reset_date: string;
-  };
-}
-
-export interface UsageStats {
-  ip: string;
-  monthly_used: number;
-  monthly_limit: number;
-  monthly_remaining: number;
-  reset_date: string;
-}
-
-export interface ApiError {
-  detail: string;
-  error?: string;
-  retry_after?: number;
-  reset_in?: string;
-  monthly_limit?: number;
-  monthly_used?: number;
-  monthly_remaining?: number;
 }
