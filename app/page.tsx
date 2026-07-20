@@ -79,7 +79,7 @@ export default function Home() {
 
   if (report) {
     return (
-      <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
+      <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
         <Header />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
           <ReportDashboard report={report} onReset={handleReset} />
@@ -90,45 +90,63 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
       <Header />
       
-      {/* Hero Section */}
+      {/* Hero Section - Refined & Classy */}
       <section className="relative overflow-hidden">
+        {/* Subtle background elements */}
         <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]" />
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/5 rounded-full blur-3xl" />
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-50 dark:bg-indigo-950/30 rounded-full border border-indigo-200 dark:border-indigo-800/50 mb-6">
-              <Icons.Zap className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-              <span className="text-sm font-medium text-indigo-600 dark:text-indigo-400">Free SEO Analysis</span>
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
+          <div className="text-center max-w-3xl mx-auto">
+            {/* Badge - Refined */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-700/50 shadow-sm mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-300 tracking-wide">
+                Free SEO Analysis — No credit card required
+              </span>
             </div>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
-              Scale Your Business with{' '}
-              <span className="gradient-text">Data-Driven SEO</span>
+
+            {/* Main heading */}
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-[1.1] tracking-tight">
+              Data-driven SEO for{' '}
+              <br className="hidden sm:block" />
+              <span className="relative inline-block">
+                <span className="relative z-10 gradient-text">
+                  business growth
+                </span>
+                <span className="absolute bottom-1 left-0 w-full h-3 bg-indigo-200/30 dark:bg-indigo-500/10 -z-0 rounded-full" />
+              </span>
             </h1>
-            
-            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Get comprehensive SEO analysis, actionable insights, and expert guidance to grow your online presence. 
-              Start with <span className="font-semibold text-indigo-600 dark:text-indigo-400">6 free analyses</span> per month.
+
+            {/* Description */}
+            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed font-light">
+              Get a comprehensive SEO analysis in seconds. 
+              <span className="font-medium text-indigo-600 dark:text-indigo-400"> 6 free analyses</span> monthly — 
+              no signup, no commitment.
             </p>
 
+            {/* Usage Stats */}
             {usageStats && (
               <div className="mb-8 flex justify-center">
                 <UsageStats stats={usageStats} />
               </div>
             )}
             
+            {/* Analysis Form */}
             <AnalysisForm onSubmit={handleAnalyze} loading={loading} />
             
+            {/* Error Display */}
             {error && (
               <div className={`mt-6 p-4 rounded-xl text-left max-w-2xl mx-auto ${
                 error.includes('limit') 
-                  ? 'bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-200'
-                  : 'bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-200'
+                  ? 'bg-amber-50/80 dark:bg-amber-950/20 border border-amber-200/50 dark:border-amber-800/30 text-amber-800 dark:text-amber-200'
+                  : 'bg-red-50/80 dark:bg-red-950/20 border border-red-200/50 dark:border-red-800/30 text-red-700 dark:text-red-200'
               }`}>
                 <div className="flex items-start gap-3">
                   <Icons.AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
@@ -154,38 +172,48 @@ export default function Home() {
                 </div>
               </div>
             )}
-          </div>
 
-          {/* Trust Indicators */}
-          <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-sm text-slate-500 dark:text-slate-400">
-            <div className="flex items-center gap-2">
-              <Icons.Check className="w-4 h-4 text-emerald-500" />
-              <span>6 free analyses</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Icons.Check className="w-4 h-4 text-emerald-500" />
-              <span>No signup required</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Icons.Check className="w-4 h-4 text-emerald-500" />
-              <span>Results in seconds</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Icons.Check className="w-4 h-4 text-emerald-500" />
-              <span>Expert recommendations</span>
+            {/* Trust indicators */}
+            <div className="mt-12 pt-8 border-t border-gray-200/50 dark:border-gray-800/50">
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-gray-500 dark:text-gray-400">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-5 h-5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 flex items-center justify-center">
+                    <Icons.Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                  </div>
+                  <span className="font-medium">6 free analyses</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-5 h-5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 flex items-center justify-center">
+                    <Icons.Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                  </div>
+                  <span className="font-medium">No signup</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-5 h-5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 flex items-center justify-center">
+                    <Icons.Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                  </div>
+                  <span className="font-medium">Results in seconds</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-5 h-5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 flex items-center justify-center">
+                    <Icons.Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                  </div>
+                  <span className="font-medium">Expert guidance</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="section-padding bg-white dark:bg-slate-900/50">
+      <section id="features" className="py-16 md:py-24 bg-white dark:bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Why Choose <span className="gradient-text">ScaleWithDestiny</span>
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               Everything you need to optimize your website and grow your business.
             </p>
           </div>
@@ -223,14 +251,14 @@ export default function Home() {
                 description: 'Get personalized guidance from SEO experts to scale your business.'
               }
             ].map((feature, index) => (
-              <div key={index} className="group p-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 card-hover">
+              <div key={index} className="group p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 card-hover">
                 <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <feature.icon className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -240,7 +268,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="section-padding">
+      <section id="about" className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -248,11 +276,11 @@ export default function Home() {
                 <Icons.Award className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                 <span className="text-sm font-medium text-indigo-600 dark:text-indigo-400">About Us</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 We Help Businesses{' '}
                 <span className="gradient-text">Scale with Data</span>
               </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                 At ScaleWithDestiny, we believe that every business deserves access to professional SEO insights 
                 and expert guidance. Our platform combines powerful analysis tools with human expertise to help 
                 you make data-driven decisions.
@@ -261,22 +289,22 @@ export default function Home() {
                 <div className="flex items-start gap-3">
                   <Icons.Check className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white">Data-Driven Approach</h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">We use real data to uncover opportunities and identify areas for improvement.</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white">Data-Driven Approach</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">We use real data to uncover opportunities and identify areas for improvement.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Icons.Check className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white">Expert Guidance</h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Our team of SEO specialists provides personalized recommendations and support.</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white">Expert Guidance</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Our team of SEO specialists provides personalized recommendations and support.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Icons.Check className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white">Proven Results</h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">We've helped hundreds of businesses improve their search visibility and grow.</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white">Proven Results</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">We've helped hundreds of businesses improve their search visibility and grow.</p>
                   </div>
                 </div>
               </div>
@@ -284,7 +312,7 @@ export default function Home() {
                 href="https://cal.com/destinyseo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-8 px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium rounded-xl hover:from-indigo-700 hover:to-blue-700 transition-all shadow-lg shadow-indigo-600/25 hover:shadow-indigo-600/40"
+                className="inline-flex items-center gap-2 mt-8 px-6 py-3 gradient-bg text-white font-medium rounded-xl hover:opacity-90 transition-all shadow-lg shadow-indigo-600/25 hover:shadow-indigo-600/40"
               >
                 <span>Book a Free Consultation</span>
                 <Icons.ArrowRight className="w-4 h-4" />
@@ -292,32 +320,32 @@ export default function Home() {
             </div>
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 to-blue-500/20 rounded-3xl blur-2xl" />
-              <div className="relative bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-8 shadow-xl">
+              <div className="relative bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 shadow-xl">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 bg-gradient-to-br from-indigo-600 to-blue-600 rounded-2xl flex items-center justify-center">
+                  <div className="w-14 h-14 gradient-bg rounded-2xl flex items-center justify-center">
                     <Icons.Rocket className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">ScaleWithDestiny</h3>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">SEO Analysis Platform</p>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">ScaleWithDestiny</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">SEO Analysis Platform</p>
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center py-3 border-b border-slate-100 dark:border-slate-700">
-                    <span className="text-sm text-slate-600 dark:text-slate-400">Free Analyses</span>
-                    <span className="font-semibold text-slate-900 dark:text-white">6/month</span>
+                  <div className="flex justify-between items-center py-3 border-b border-gray-100 dark:border-gray-700">
+                    <span className="text-sm text-gray-600 dark:text-gray-400">Free Analyses</span>
+                    <span className="font-semibold text-gray-900 dark:text-white">6/month</span>
                   </div>
-                  <div className="flex justify-between items-center py-3 border-b border-slate-100 dark:border-slate-700">
-                    <span className="text-sm text-slate-600 dark:text-slate-400">Analysis Time</span>
-                    <span className="font-semibold text-slate-900 dark:text-white">&lt; 30 seconds</span>
+                  <div className="flex justify-between items-center py-3 border-b border-gray-100 dark:border-gray-700">
+                    <span className="text-sm text-gray-600 dark:text-gray-400">Analysis Time</span>
+                    <span className="font-semibold text-gray-900 dark:text-white">&lt; 30 seconds</span>
                   </div>
-                  <div className="flex justify-between items-center py-3 border-b border-slate-100 dark:border-slate-700">
-                    <span className="text-sm text-slate-600 dark:text-slate-400">Expert Support</span>
-                    <span className="font-semibold text-slate-900 dark:text-white">Included</span>
+                  <div className="flex justify-between items-center py-3 border-b border-gray-100 dark:border-gray-700">
+                    <span className="text-sm text-gray-600 dark:text-gray-400">Expert Support</span>
+                    <span className="font-semibold text-gray-900 dark:text-white">Included</span>
                   </div>
                   <div className="flex justify-between items-center py-3">
-                    <span className="text-sm text-slate-600 dark:text-slate-400">Trusted By</span>
-                    <span className="font-semibold text-slate-900 dark:text-white">500+ Businesses</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">Trusted By</span>
+                    <span className="font-semibold text-gray-900 dark:text-white">500+ Businesses</span>
                   </div>
                 </div>
               </div>
@@ -327,13 +355,13 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="section-padding bg-white dark:bg-slate-900/50">
+      <section id="testimonials" className="py-16 md:py-24 bg-white dark:bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               What Our <span className="gradient-text">Clients Say</span>
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               Real results from real businesses who trusted ScaleWithDestiny.
             </p>
           </div>
@@ -356,18 +384,18 @@ export default function Home() {
                 role: "Founder, CreativeLab"
               }
             ].map((testimonial, index) => (
-              <div key={index} className="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 card-hover">
+              <div key={index} className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 card-hover">
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
                     <Icons.Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
                   ))}
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                   "{testimonial.quote}"
                 </p>
                 <div>
-                  <p className="font-semibold text-slate-900 dark:text-white">{testimonial.author}</p>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">{testimonial.role}</p>
+                  <p className="font-semibold text-gray-900 dark:text-white">{testimonial.author}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.role}</p>
                 </div>
               </div>
             ))}
@@ -376,9 +404,9 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding">
+      <section className="py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 rounded-3xl p-8 md:p-12 text-center">
+          <div className="relative overflow-hidden gradient-bg rounded-3xl p-8 md:p-12 text-center">
             <div className="absolute inset-0 bg-grid-white/10 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]" />
             <div className="relative">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -396,7 +424,7 @@ export default function Home() {
                   <span>Analyze Your Site Now</span>
                 </a>
                 <a
-                  href="https://cal.com/destinyseo"
+                  href="https://scalewithdestiny.com/contact"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-700/50 text-white font-medium rounded-xl hover:bg-indigo-700/70 transition-all backdrop-blur-sm border border-indigo-400/30"
