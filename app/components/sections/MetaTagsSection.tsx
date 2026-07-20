@@ -4,27 +4,39 @@
 import { FileText, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 
 interface Props {
-  meta: {
-    title?: { content: string; length: number; status: string };
-    description?: { content: string; length: number; status: string };
+  meta?: {
+    title?: { content?: string; length?: number; status?: string };
+    description?: { content?: string; length?: number; status?: string };
     canonical?: string;
     viewport?: boolean;
     charset?: string;
-    robots?: { content: string; index: boolean; follow: boolean };
+    robots?: { content?: string; index?: boolean; follow?: boolean };
+    og_tags?: Record<string, string>;
+    twitter_tags?: Record<string, string>;
   };
 }
 
-export function MetaTagsSection({ meta }: Props) {
+export function MetaTagsSection({ meta = {} }: Props) {
   const title = meta?.title ?? { content: 'Not set', length: 0, status: 'missing' };
   const description = meta?.description ?? { content: 'Not set', length: 0, status: 'missing' };
   
-  const getStatusIcon = (status: string) => {
+  const getStatusIcon = (status?: string) => {
     if (status === 'optimal' || status === 'present') {
       return <CheckCircle className="w-4 h-4 text-emerald-500" />;
     } else if (status === 'missing') {
       return <XCircle className="w-4 h-4 text-rose-500" />;
     } else {
       return <AlertCircle className="w-4 h-4 text-amber-500" />;
+    }
+  };
+
+  const getStatusColor = (status?: string) => {
+    if (status === 'optimal' || status === 'present') {
+      return 'text-emerald-600 dark:text-emerald-400';
+    } else if (status === 'missing') {
+      return 'text-rose-600 dark:text-rose-400';
+    } else {
+      return 'text-amber-600 dark:text-amber-400';
     }
   };
 
@@ -41,12 +53,12 @@ export function MetaTagsSection({ meta }: Props) {
             <p className="text-sm text-slate-500 dark:text-slate-400">Title</p>
             {getStatusIcon(title.status)}
           </div>
-          <p className="font-medium text-slate-900 dark:text-white text-sm">
+          <p className={`font-medium text-sm ${getStatusColor(title.status)}`}>
             {title.content || 'Not set'}
           </p>
-          {title.content && (
+          {title.content && title.content !== 'Not set' && (
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Length: {title.length} characters • {title.status}
+              Length: {title.length || 0} characters • {title.status || 'unknown'}
             </p>
           )}
         </div>
@@ -55,12 +67,12 @@ export function MetaTagsSection({ meta }: Props) {
             <p className="text-sm text-slate-500 dark:text-slate-400">Description</p>
             {getStatusIcon(description.status)}
           </div>
-          <p className="font-medium text-slate-900 dark:text-white text-sm">
+          <p className={`font-medium text-sm ${getStatusColor(description.status)}`}>
             {description.content || 'Not set'}
           </p>
-          {description.content && (
+          {description.content && description.content !== 'Not set' && (
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Length: {description.length} characters • {description.status}
+              Length: {description.length || 0} characters • {description.status || 'unknown'}
             </p>
           )}
         </div>
@@ -73,12 +85,12 @@ export function MetaTagsSection({ meta }: Props) {
             {meta?.canonical ? (
               <>
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />
-                <span>Present</span>
+                <span className="text-emerald-600 dark:text-emerald-400">Present</span>
               </>
             ) : (
               <>
                 <XCircle className="w-3.5 h-3.5 text-rose-500" />
-                <span>Missing</span>
+                <span className="text-rose-600 dark:text-rose-400">Missing</span>
               </>
             )}
           </p>
@@ -89,12 +101,12 @@ export function MetaTagsSection({ meta }: Props) {
             {meta?.viewport ? (
               <>
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />
-                <span>Set</span>
+                <span className="text-emerald-600 dark:text-emerald-400">Set</span>
               </>
             ) : (
               <>
                 <XCircle className="w-3.5 h-3.5 text-rose-500" />
-                <span>Missing</span>
+                <span className="text-rose-600 dark:text-rose-400">Missing</span>
               </>
             )}
           </p>
@@ -105,12 +117,12 @@ export function MetaTagsSection({ meta }: Props) {
             {meta?.charset ? (
               <>
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />
-                <span>{meta.charset}</span>
+                <span className="text-emerald-600 dark:text-emerald-400">{meta.charset}</span>
               </>
             ) : (
               <>
                 <XCircle className="w-3.5 h-3.5 text-rose-500" />
-                <span>Not set</span>
+                <span className="text-rose-600 dark:text-rose-400">Not set</span>
               </>
             )}
           </p>
@@ -119,11 +131,11 @@ export function MetaTagsSection({ meta }: Props) {
           <p className="text-xs text-slate-500 dark:text-slate-400">Robots</p>
           <p className="text-sm font-medium flex items-center justify-center gap-1">
             {meta?.robots?.content ? (
-              <span>{meta.robots.content}</span>
+              <span className="text-slate-700 dark:text-slate-300">{meta.robots.content}</span>
             ) : (
               <>
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />
-                <span>Default</span>
+                <span className="text-emerald-600 dark:text-emerald-400">Default</span>
               </>
             )}
           </p>

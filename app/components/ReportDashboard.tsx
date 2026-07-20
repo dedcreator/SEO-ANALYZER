@@ -278,17 +278,17 @@ export function ReportDashboard({ report, onReset }: Props) {
             </div>
           )}
 
-          {activeTab === 'details' && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <MetaTagsSection meta={report?.meta_tags || {}} />
-              <HeadingsSection headings={report?.headings || {}} />
-              <ImagesSection images={report?.images || {}} />
-              <LinksSection links={report?.links || {}} />
-              <ContentSection content={report?.content || {}} />
-              <SecuritySection security={report?.security || {}} />
-              <PerformanceSection performance={report?.performance || {}} />
-            </div>
-          )}
+         {activeTab === 'details' && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <MetaTagsSection meta={report?.meta_tags || {}} />
+            <HeadingsSection headings={report?.headings || {}} />
+            <ImagesSection images={report?.images || {}} />
+            <LinksSection links={report?.links || {}} />
+            <ContentSection content={report?.content || {}} />
+            <SecuritySection security={report?.security || {}} />
+            <PerformanceSection performance={report?.performance || {}} />
+          </div>
+        )}
 
           {activeTab === 'recommendations' && (
             <RecommendationsSection recommendations={recommendations} full />

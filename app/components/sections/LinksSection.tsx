@@ -4,7 +4,7 @@
 import { Link, ExternalLink, Users, Hash, CheckCircle, AlertCircle } from 'lucide-react';
 
 interface Props {
-  links: {
+  links?: {
     total?: number;
     internal?: number;
     external?: number;
@@ -15,7 +15,7 @@ interface Props {
   };
 }
 
-export function LinksSection({ links }: Props) {
+export function LinksSection({ links = {} }: Props) {
   const total = links?.total ?? 0;
   const internal = links?.internal ?? 0;
   const external = links?.external ?? 0;

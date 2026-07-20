@@ -2,6 +2,14 @@
 'use client';
 
 import { useState } from 'react';
+import { 
+  AlertCircle, 
+  CheckCircle, 
+  ChevronDown, 
+  Sparkles, 
+  Info,
+  AlertTriangle 
+} from 'lucide-react';
 import { Icons } from '../Icons';
 
 interface Recommendation {
@@ -22,45 +30,40 @@ interface Props {
 export function RecommendationsSection({ recommendations, limit = 5, full = false }: Props) {
   const [expanded, setExpanded] = useState<number | null>(null);
 
-  // Safe icon getter
-  const getIcon = (name: keyof typeof Icons) => {
-    return Icons[name] || Icons.Info;
-  };
-
   const priorityConfig = {
     critical: { 
       bg: 'bg-rose-50 dark:bg-rose-950/30', 
       border: 'border-rose-200 dark:border-rose-800/50', 
       text: 'text-rose-700 dark:text-rose-400',
-      icon: getIcon('AlertCircle'),
+      icon: AlertCircle,
       color: 'text-rose-500'
     },
     high: { 
       bg: 'bg-orange-50 dark:bg-orange-950/30', 
       border: 'border-orange-200 dark:border-orange-800/50', 
       text: 'text-orange-700 dark:text-orange-400',
-      icon: getIcon('AlertCircle'),
+      icon: AlertCircle,
       color: 'text-orange-500'
     },
     medium: { 
       bg: 'bg-amber-50 dark:bg-amber-950/30', 
       border: 'border-amber-200 dark:border-amber-800/50', 
       text: 'text-amber-700 dark:text-amber-400',
-      icon: getIcon('AlertCircle'),
+      icon: AlertCircle,
       color: 'text-amber-500'
     },
     low: { 
       bg: 'bg-blue-50 dark:bg-blue-950/30', 
       border: 'border-blue-200 dark:border-blue-800/50', 
       text: 'text-blue-700 dark:text-blue-400',
-      icon: getIcon('Info'),
+      icon: Info,
       color: 'text-blue-500'
     },
     info: { 
       bg: 'bg-slate-50 dark:bg-slate-800', 
       border: 'border-slate-200 dark:border-slate-700', 
       text: 'text-slate-700 dark:text-slate-300',
-      icon: getIcon('Info'),
+      icon: Info,
       color: 'text-slate-400'
     },
   };
@@ -72,11 +75,7 @@ export function RecommendationsSection({ recommendations, limit = 5, full = fals
     return (
       <div className="bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800/50 p-8 text-center">
         <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/40 rounded-full flex items-center justify-center mx-auto mb-3">
-          {Icons.Check ? (
-            <Icons.Check className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-          ) : (
-            <span className="text-2xl">✅</span>
-          )}
+          <CheckCircle className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
         </div>
         <h3 className="text-lg font-semibold text-emerald-700 dark:text-emerald-400">No Issues Found!</h3>
         <p className="text-emerald-600 dark:text-emerald-300 mt-1">Your page is well optimized for SEO.</p>
@@ -88,11 +87,7 @@ export function RecommendationsSection({ recommendations, limit = 5, full = fals
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-          {Icons.Sparkles ? (
-            <Icons.Sparkles className="w-5 h-5 text-indigo-500" />
-          ) : (
-            <span className="text-xl">✨</span>
-          )}
+          <Sparkles className="w-5 h-5 text-indigo-500" />
           Recommendations
           <span className="ml-2 px-2 py-0.5 rounded-full text-xs font-medium bg-rose-100 text-rose-700 dark:bg-rose-950/40 dark:text-rose-400">
             {recommendations.length}
@@ -121,11 +116,7 @@ export function RecommendationsSection({ recommendations, limit = 5, full = fals
                 onClick={() => setExpanded(isExpanded ? null : index)}
               >
                 <div className={`flex-shrink-0 w-8 h-8 rounded-full ${config.bg} border ${config.border} flex items-center justify-center`}>
-                  {Icon ? (
-                    <Icon className={`w-4 h-4 ${config.color}`} />
-                  ) : (
-                    <span className="text-sm">⚠️</span>
-                  )}
+                  <Icon className={`w-4 h-4 ${config.color}`} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
@@ -151,11 +142,7 @@ export function RecommendationsSection({ recommendations, limit = 5, full = fals
                   )}
                 </div>
                 <div className={`flex-shrink-0 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>
-                  {Icons.ChevronDown ? (
-                    <Icons.ChevronDown className="w-5 h-5 text-slate-400" />
-                  ) : (
-                    <span className="text-slate-400">▼</span>
-                  )}
+                  <ChevronDown className="w-5 h-5 text-slate-400" />
                 </div>
               </div>
             </div>

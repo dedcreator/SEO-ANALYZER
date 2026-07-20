@@ -25,7 +25,6 @@ export function ScoreGauge({ score, size = 200 }: ScoreGaugeProps) {
     <div className="flex flex-col items-center">
       <div className="relative" style={{ width: size, height: size }}>
         <svg className="w-full h-full transform -rotate-90">
-          {/* Background circle */}
           <circle
             cx="50%"
             cy="50%"
@@ -33,9 +32,8 @@ export function ScoreGauge({ score, size = 200 }: ScoreGaugeProps) {
             fill="none"
             stroke="#E5E7EB"
             strokeWidth={strokeWidth}
-            className="dark:stroke-gray-700"
+            className="dark:stroke-slate-700"
           />
-          {/* Progress circle */}
           <circle
             cx="50%"
             cy="50%"
@@ -50,19 +48,11 @@ export function ScoreGauge({ score, size = 200 }: ScoreGaugeProps) {
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-5xl font-bold" style={{ color }}>
+          <span className="text-4xl font-bold" style={{ color }}>
             {score}
           </span>
-          <span className="text-sm text-gray-500 dark:text-gray-400">/ 100</span>
+          <span className="text-sm text-slate-500 dark:text-slate-400">/ 100</span>
         </div>
-      </div>
-      <div className="mt-2 text-center">
-        <p className="text-sm font-medium text-gray-900 dark:text-white">
-          Overall SEO Score
-        </p>
-        <p className="text-xs text-gray-500 dark:text-gray-400">
-          {score >= 80 ? 'Excellent' : score >= 60 ? 'Good' : score >= 40 ? 'Fair' : 'Needs Work'}
-        </p>
       </div>
     </div>
   );

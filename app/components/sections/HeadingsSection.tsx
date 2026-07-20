@@ -4,7 +4,7 @@
 import { Hash, CheckCircle, AlertCircle } from 'lucide-react';
 
 interface Props {
-  headings: {
+  headings?: {
     h1?: string[];
     h2?: string[];
     h3?: string[];
@@ -14,7 +14,7 @@ interface Props {
   };
 }
 
-export function HeadingsSection({ headings }: Props) {
+export function HeadingsSection({ headings = {} }: Props) {
   const headingLevels = [
     { level: 1, tag: 'h1', label: 'H1' },
     { level: 2, tag: 'h2', label: 'H2' },
