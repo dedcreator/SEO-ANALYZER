@@ -11,16 +11,17 @@ export function ScoreGauge({ score, size = 200 }: ScoreGaugeProps) {
   const strokeWidth = size * 0.05;
   const circumference = 2 * Math.PI * radius;
   const progress = (score / 100) * circumference;
-  
+
+  // Same three-tier read used in ReportDashboard: teal (good) / brass
+  // (fair) / rust (poor) — keeps the score color consistent everywhere
+  // it appears.
   const getColor = (score: number) => {
-    if (score >= 80) return '#10B981';
-    if (score >= 60) return '#F59E0B';
-    if (score >= 40) return '#F97316';
-    return '#EF4444';
+    if (score >= 80) return '#1F6F63';
+    if (score >= 60) return '#B8863C';
+    return '#A6432E';
   };
 
   const color = getColor(score);
-  
   return (
     <div className="flex flex-col items-center">
       <div className="relative" style={{ width: size, height: size }}>
@@ -30,9 +31,9 @@ export function ScoreGauge({ score, size = 200 }: ScoreGaugeProps) {
             cy="50%"
             r={radius}
             fill="none"
-            stroke="#E5E7EB"
+            stroke="#12181C1A"
             strokeWidth={strokeWidth}
-            className="dark:stroke-slate-700"
+            className="dark:stroke-white/10"
           />
           <circle
             cx="50%"
@@ -48,10 +49,10 @@ export function ScoreGauge({ score, size = 200 }: ScoreGaugeProps) {
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-4xl font-bold" style={{ color }}>
+          <span className="font-mono text-4xl font-semibold" style={{ color }}>
             {score}
           </span>
-          <span className="text-sm text-slate-500 dark:text-slate-400">/ 100</span>
+          <span className="font-mono text-xs text-[#12181C]/45 dark:text-white/40">/ 100</span>
         </div>
       </div>
     </div>

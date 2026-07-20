@@ -46,12 +46,12 @@ export function PDFExportButton({ report }: Props) {
     <button
       onClick={handleExportPDF}
       disabled={exporting}
-      className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all disabled:opacity-50 text-sm font-medium shadow-lg shadow-indigo-600/25 hover:shadow-indigo-600/40"
+      className="inline-flex items-center gap-2 px-4 py-2 bg-[#12181C] dark:bg-white text-[#F3F4EF] dark:text-[#12181C] hover:bg-[#B8863C] dark:hover:bg-[#B8863C] dark:hover:text-white transition-colors disabled:opacity-40 text-sm font-medium"
     >
       {exporting ? (
         <>
           <Icons.Refresh className="w-4 h-4 animate-spin" />
-          Exporting...
+          Exporting
         </>
       ) : (
         <>

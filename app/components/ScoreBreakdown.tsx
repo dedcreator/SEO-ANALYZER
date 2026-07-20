@@ -17,29 +17,30 @@ export function ScoreBreakdown({ breakdown }: ScoreBreakdownProps) {
     { label: 'Security', value: breakdown.security, max: 15 },
   ];
 
+  // Same teal / brass / rust read used by ScoreGauge and ReportDashboard.
   const getColor = (value: number, max: number) => {
     const percentage = (value / max) * 100;
-    if (percentage >= 70) return 'bg-emerald-500';
-    if (percentage >= 40) return 'bg-amber-500';
-    return 'bg-rose-500';
+    if (percentage >= 70) return 'bg-[#1F6F63]';
+    if (percentage >= 40) return 'bg-[#B8863C]';
+    return 'bg-[#A6432E]';
   };
 
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-medium text-slate-700 dark:text-slate-300">
-        Score Breakdown
+      <h3 className="font-mono text-xs tracking-[0.14em] uppercase text-[#12181C]/45 dark:text-white/40">
+        Score breakdown
       </h3>
       {items.map((item) => (
         <div key={item.label}>
-          <div className="flex justify-between text-sm mb-1">
-            <span className="text-slate-600 dark:text-slate-400">{item.label}</span>
-            <span className="text-slate-700 dark:text-slate-300 font-medium">
+          <div className="flex justify-between text-sm mb-1.5">
+            <span className="text-[#12181C]/65 dark:text-white/55">{item.label}</span>
+            <span className="font-mono text-[#12181C] dark:text-white font-medium">
               {item.value}/{item.max}
             </span>
           </div>
-          <div className="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+          <div className="w-full h-1.5 bg-[#12181C]/10 dark:bg-white/10 overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-1000 ${getColor(item.value, item.max)}`}
+              className={`h-full transition-all duration-1000 ${getColor(item.value, item.max)}`}
               style={{ width: `${(item.value / item.max) * 100}%` }}
             />
           </div>
