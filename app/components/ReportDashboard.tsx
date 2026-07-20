@@ -303,7 +303,7 @@ export function ReportDashboard({ report, onReset }: Props) {
             Analyze another site
           </button>
           <a
-            href="https://cal.com/destinyseo"
+            href="https://scalewithdestiny.com/contact"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 px-6 py-2.5 bg-[#12181C] dark:bg-white text-[#F3F4EF] dark:text-[#12181C] font-medium hover:bg-[#B8863C] dark:hover:bg-[#B8863C] dark:hover:text-white transition-colors"
